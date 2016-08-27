@@ -203,7 +203,7 @@ class Py3status:
         response = {
             'cached_until': time() + self.cache_timeout,
             'color': getattr(self.py3, 'COLOR_{}'.format(color_key.upper())),
-            'full_text': self.format.format(**r_json)
+            'full_text': self.py3.safe_format(self.format, r_json)
         }
         return response
 

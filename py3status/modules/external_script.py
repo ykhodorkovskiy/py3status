@@ -64,7 +64,8 @@ class Py3status:
 
             response = {
                 'cached_until': time() + self.cache_timeout,
-                'full_text': self.format.format(output=return_value)
+                'full_text': self.py3.safe_format(self.format,
+                                                  {'output': return_value})
             }
         else:
             response = {

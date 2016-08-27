@@ -38,7 +38,8 @@ class Py3status:
 
         response = {}
         response['cached_until'] = time() + self.cache_timeout
-        response['full_text'] = self.format.format(current=cur_task)
+        response['full_text'] = self.py3.safe_format(self.format,
+                                                     {'current': cur_task})
         return response
 
 
