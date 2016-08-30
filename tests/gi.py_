@@ -1,0 +1,10 @@
+# Shim to use pgi in place of gi as gi is problematic
+import pgi
+import pgi.repository as repository
+from pgi.repository import Gio, GLib
+import sys
+
+sys.modules['gi.repository.Gio'] = Gio
+sys.modules['gi.repository.GLib'] = GLib
+sys.modules['gi.repository'] = repository
+sys.modules['gi'] = pgi

@@ -173,5 +173,8 @@ if __name__ == "__main__":
     """
     Run module in test mode.
     """
+    config = {
+        'woeid': 615702,
+    }
     from py3status.module_test import module_test
-    module_test(Py3status)
+    module_test(Py3status, config)
