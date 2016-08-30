@@ -94,14 +94,20 @@ class Py3status:
         output = []
         if self.open:
             for item in self.items:
-                out = self.py3.get_output(item).copy()
+                out = self.py3.get_output(item)[:]
                 if self.format_separator is None:
                     if out and 'separator' not in out[-1]:
-                        out[-1]['separator'] = True
+                        # we copy the item as we do not want to change the
+                        # original.
+                        out[-1] = out[-1].copy()['separator'] = True
                 else:
                     if self.format_separator:
                         out += [{'full_text': self.format_separator}]
                 output += out
+
+            # Remove last separator
+            if self.format_separator:
+                output = output[:-1]
 
         if '{button}' in self.format:
             if self.open:
